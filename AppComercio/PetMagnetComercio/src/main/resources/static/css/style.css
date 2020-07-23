@@ -1,0 +1,117 @@
+html,
+body {
+  height: 100%;
+}
+
+/* Mantém a barra de botões visíveis */
+body {
+  padding-top: 3.5rem;
+  background-color: #F5F5F5;
+}
+
+small {
+	font-size: 9px; 
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.custom-container-login
+{
+  height: 100vh;
+}
+
+.custom-navbar-button {
+	background-color: #FFC107;
+}
+
+.form-row {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.form-group {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.btn {
+	margin-top: 15px;
+	border-radius: 50px;
+	min-width: 150px;
+	height: 35px;
+}
+
+label {
+	margin-top: 6px;
+}
+
+.fa-search, .fa-file {
+	color: black;
+	margin-top: 8px;	
+}
+
+.custom-display{
+	font-size: 2rem;
+}
+
+.barra-sub-titulo .custom-display {
+	font-size: 1.5rem;
+}
+
+.custom-required > .control-label:after {
+	content: "*";	
+}
+
+/* CARD DE SOLICITAÇÃO - INÍCIO */
+
+.card {
+/* 	background-color: #74b9ff; */
+	background-color: #c6def1;
+}
+
+.card div > p {
+	font-size: 0.7rem;
+	color: black;
+	padding: 0;
+	margin: 0;	
+}
+
+.custom-card-icon {
+	font-size: 15px;
+	margin-top: 0;
+	padding: 8px;
+}
+
+.card-header, .card-footer {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.card-body {
+	background-color: #F5F5F5;
+}
+
+.card-body .card-text {
+	font-size: 0.95rem;
+	font-weight: 400;
+	color: black;	
+}
+
+.custom-value {
+	font-weight: bold;
+}
+
+.card p.custom-value, span.custom-value {
+	font-size: 1rem;
+}
+
+.card-footer .custom-card-icon {
+	margin: 0;
+	padding: 0;
+	margin-left: 98px;
+	
+}
+
+/* CARD DE SOLICITAÇÃO - FINAL */
