@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="base">
+	  
+<head>
+	<meta charset="utf-8">
+	<title>Colaborador</title>
+</head>
+
+<body>
+	<!-- BARRA DE SUB-TITULOS E BOTOES -->
+	<div layout:fragment="navbar" class="d-flex flex-column">
+		<!-- NAVBAR PRINCIPAL -->
+		<th:block th:include="fragmentos/navbar_main"></th:block>
+		
+		<!-- BARRA DE STATUS E BOTOES -->
+		<div class="d-flex justify-content-between pl-3 pr-3 pt-1 pb-1 custom-navbar-button position-relative">
+			<div class="barra-sub-titulo">
+				<h1 class="display-4 custom-display">Colaborador</h1>
+			</div>
+<!-- 			<div class=""> -->
+<!-- 				<a th:href="@{#}"> <i class="fas fa-search custom-icon-nav" style='font-size:18px'></i> </a> -->
+<!-- 				<a th:href="@{/solicitacoes/cadastrar}"> <i class="far fa-file custom-icon-nav pl-2" style="font-size:18px"></i> </a> -->
+<!-- 			</div> -->
+		</div>
+	</div>
+	
+	8<!-- CONTEÚDO PRINCIPAL -->
+	<div layout:fragment="content">
+		<th:block th:include="fragmentos/alert_sucesso_erro"></th:block>
+				
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col"></div>
+				
+				<div class="col-lg-6 col-md-7 col-sm-7">
+					<form th:action="@{/colaborador/cadastrar}" th:object="${colaborador}" method="post" autocomplete="off">
+						<div class="form-row">
+							<div class="col-2-sm">
+								<div class="form-group">
+									<label for="id" class="control-label col-form-label col-form-label-sm">Identificador</label>
+									<input th:field="*{id}" id="id" class="form-control form-control-sm" readonly>
+								</div>
+							</div>
+							
+							<div class="col-2-sm">
+								<div class="form-group">
+									<label for="dtCriacao" class="control-label col-form-label col-form-label-sm">Data da Criação</label>
+									<p th:text="${dataCriacao}" id="dtCriacao" class="form-control form-control-sm" readonly>
+								</div>
+							</div>
+						</div>
+			
+<!-- 						<div class="form-row"> -->
+<!-- 							<div class="col-2-sm"> -->
+<!-- 								<div class="form-group custom-required"> -->
+<!-- 								 	<label for="dtSolicitacao" class="control-label col-form-label col-form-label-sm">Data da Solicitação</label> -->
+<!-- 								  	<input th:field="*{dtSolicitacao}" id="dtSolicitacao" class="form-control form-control-sm custom-datepicker"> -->
+<!-- 									<small th:if="${#fields.hasErrors('dtSolicitacao')}" class="text text-danger custom-text-msg" th:errors="*{dtSolicitacao}"></small>							 -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+							
+<!-- 							<div class="col-2-sm"> -->
+<!-- 								<div class="form-group"> -->
+<!-- 									<label for="idExterno" class="control-label col-form-label col-form-label-sm">Id. Externo</label> -->
+<!-- 									<input th:field="*{idExterno}" id="idExterno" class="form-control form-control-sm"> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+			
+						<div class="form-row">
+							<div class="col">
+								<div class="form-group custom-required">
+									<label for="nome" class="control-label col-form-label col-form-label-sm">Nome</label>
+									<input th:field="*{nome}" id="nome" class="form-control form-control-sm">
+									<small th:if="${#fields.hasErrors('nome')}" class="text text-danger" th:errors="*{nome}"></small>
+								</div>
+							</div>
+						</div>
+			
+						<div class="form-row">
+							<div class="col">
+								<div class="form-group custom-required">
+									<label for="matricula" class="control-label col-form-label col-form-label-sm">Matrícula</label>
+									<input th:field="*{matricula}" id="matricula" class="form-control form-control-sm">
+									<small th:if="${#fields.hasErrors('matricula')}" class="text text-danger" th:errors="*{matricula}"></small>
+								</div>
+							</div>
+						</div>
+			
+						<div class="form-row">
+							<div class="col">
+								<div class="form-group">
+									<label for="email" class="control-label col-form-label col-form-label-sm">eMail</label>
+									<textarea th:field="*{email}" id="email" class="form-control form-control-sm" rows="4"></textarea>
+									<small th:if="${#fields.hasErrors('email')}" class="text text-danger" th:errors="*{email}"></small>
+								</div>
+							</div>
+						</div>
+			
+						<div class="form-row">
+							<div class="col-1-sm">
+								<div class="form-group">
+									<label for="senha" class="control-label col-form-label col-form-label-sm">Senha</label>
+									<input th:field="*{senha}" id="senha" class="form-control form-control-sm">
+									<small th:if="${#fields.hasErrors('senha')}" class="text text-danger" th:errors="*{senha}"></small>
+								</div>
+							</div>
+						</div>
+			
+						<button class="btn btn-success btn-sm">Gravar</button>	
+					</form>
+				</div>
+			
+				<div class="col"></div>
+			</div>	
+		</div>
+
+	</div>
+</body>
+</html>

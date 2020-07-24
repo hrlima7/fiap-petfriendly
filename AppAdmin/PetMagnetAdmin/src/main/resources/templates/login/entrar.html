@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="base">
+	  
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style-login	.css}"/>
+	<title>Login</title>
+</head>
+
+<body class="text-center">
+	<div layout:fragment="navbar" class="d-flex flex-column">
+		<!-- NAVBAR PRINCIPAL -->
+		<th:block th:include="fragmentos/navbar_login"></th:block>
+	</div>
+	
+	<div layout:fragment="content">
+		<form th:action="@{conectar}" th:object="${login}" method="post" class="form-signin">
+			<th:block th:include="fragmentos/alert_sucesso_erro"></th:block>
+				
+			<h1 class="h3 mb-5 font-weight-normal">Faça Login</h1>
+
+			<div class="form-group">
+				<label for="usuario">Usuário</label> 
+				<input th:field="*{usuario}" id="usuario" class="form-control form-control-sm" placeholder="eMail">
+				<small th:if="${#fields.hasErrors('usuario')}" class="text text-danger custom-text-msg" th:errors="*{usuario}"></small>
+			</div>
+
+			<div class="form-group">
+				<label for="senha">Senha</label> 
+				<input th:field="*{senha}" id="senha" class="form-control form-control-sm" autocomplete="off" placeholder="Senha">
+				<small th:if="${#fields.hasErrors('senha')}" class="text text-danger custom-text-msg" th:errors="*{senha}"></small>
+			</div>
+
+			<button class="btn btn-success btn-sm btn-block mt-5">Entrar</button>
+
+			<div class="mb-3">
+				<p class="text-left custom-text-small"> <a th:href="@{/colaborador/cadastro_colaborador}">Não sou cadastrado</i> </a> </p>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
