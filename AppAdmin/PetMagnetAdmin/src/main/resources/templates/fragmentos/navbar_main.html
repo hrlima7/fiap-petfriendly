@@ -4,24 +4,31 @@
 
 	<!-- BARRA DE NAVEGAÇÃO PRINCIPAL -->
  	<nav class="navbar navbar-expand-lg navbar-dark bg-dark bd-navbar flex-grow-1 fixed-top">
-	  <a class="navbar-brand" href="#">PetMagnet-Comércio</a>
+	  <a class="navbar-brand" href="#">PetMagnet - Administração</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-	    <ul class="navbar-nav ml-auto">
+	    <ul class="navbar-nav ml-auto w-25">
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Cadastros
+	          Menu
 	        </a>
-	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="#">Usuário</a>
-	          <a class="dropdown-item" href="#">Recursos</a>
-	          <a class="dropdown-item" href="#">Algo mais aqui</a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="max-width: 300px;">
+	          <a class="dropdown-header" href="#">Usuários</a>
+	          <a class="dropdown-item" href="#">Listar todos</a>
+	          <a class="dropdown-item" th:href="@{/usuario/cadastrar}">Cadastrar...</a>
+	          <a class="dropdown-item" href="#">Editar...</a>
+	          <a class="dropdown-header" href="#">Estabelecimentos</a>
+	          <a class="dropdown-item" href="#">Listar todos</a>
+	          <a class="dropdown-item" href="#">Cadastrar...</a>
+	          <a class="dropdown-item" href="#">Editar...</a>
+	          <div class="dropdown-divider"></div>
+	          <a class="dropdown-item" href="#">Sair</a>
 	        </div>
 	      </li>
 	      <li class="nav-item active">
-	        <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
+	        <a class="nav-link" href="#">Sidnei<span class="sr-only">(Página atual)</span></a>
 	      </li>
 	    </ul>
 	  </div>

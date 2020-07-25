@@ -11,26 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.petmagnetadm.model.Colaborador;
 import br.com.petmagnetadm.model.Login;
-import br.com.petmagnetadm.service.impl.ColaboradorServiceImpl;
-import br.com.petmagnetadm.service.impl.EstabelecimentoServiceImpl;
+import br.com.petmagnetadm.model.Usuario;
+import br.com.petmagnetadm.service.impl.UsuarioServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("conectar")
+@RequestMapping("admin")
 public class LoginController {
 
 	@Autowired
-	EstabelecimentoServiceImpl estabelecimentoService;
-	
-	@Autowired
-	ColaboradorServiceImpl ColaboradorService;
+	UsuarioServiceImpl usuarioService;
 	
 	@GetMapping("")
 	public String abrirFormLogin(Login l, Model m) {
-		return "login/entrar";
+		return "principal/principal";
 	}
 	
 	@PostMapping("")
@@ -39,9 +35,9 @@ public class LoginController {
 			return "login/entrar";
 		}
 		
-		Colaborador colaborador = login.validarAcesso(ColaboradorService);
+		Usuario usuario = login.validarAcesso(usuarioService);
 		
-		if (colaborador == null) {
+		if (usuario == null) {
 			ra.addFlashAttribute("msgerro", "Ops! Usuário ou Senha não Cadastrados.");
 			return "redirect:conectar";
 		}

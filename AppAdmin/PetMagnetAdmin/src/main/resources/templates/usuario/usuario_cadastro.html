@@ -5,7 +5,7 @@
 	  
 <head>
 	<meta charset="utf-8">
-	<title>Colaborador</title>
+	<title>Usuário</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
 		<!-- BARRA DE STATUS E BOTOES -->
 		<div class="d-flex justify-content-between pl-3 pr-3 pt-1 pb-1 custom-navbar-button position-relative">
 			<div class="barra-sub-titulo">
-				<h1 class="display-4 custom-display">Colaborador</h1>
+				<h1 class="display-4 custom-display">Cadastro de Usuário</h1>
 			</div>
 <!-- 			<div class=""> -->
 <!-- 				<a th:href="@{#}"> <i class="fas fa-search custom-icon-nav" style='font-size:18px'></i> </a> -->
@@ -26,16 +26,16 @@
 		</div>
 	</div>
 	
-	8<!-- CONTEÚDO PRINCIPAL -->
+	<!-- CONTEÚDO PRINCIPAL -->
 	<div layout:fragment="content">
-		<th:block th:include="fragmentos/alert_sucesso_erro"></th:block>
-				
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col"></div>
 				
 				<div class="col-lg-6 col-md-7 col-sm-7">
-					<form th:action="@{/colaborador/cadastrar}" th:object="${colaborador}" method="post" autocomplete="off">
+					<th:block th:include="fragmentos/alert_sucesso_erro"></th:block>
+					
+					<form th:action="@{/usuario/cadastrar}" th:object="${usuario}" method="post" autocomplete="off">
 						<div class="form-row">
 							<div class="col-2-sm">
 								<div class="form-group">
@@ -44,30 +44,13 @@
 								</div>
 							</div>
 							
-							<div class="col-2-sm">
-								<div class="form-group">
-									<label for="dtCriacao" class="control-label col-form-label col-form-label-sm">Data da Criação</label>
-									<p th:text="${dataCriacao}" id="dtCriacao" class="form-control form-control-sm" readonly>
-								</div>
-							</div>
-						</div>
-			
-<!-- 						<div class="form-row"> -->
-<!-- 							<div class="col-2-sm"> -->
-<!-- 								<div class="form-group custom-required"> -->
-<!-- 								 	<label for="dtSolicitacao" class="control-label col-form-label col-form-label-sm">Data da Solicitação</label> -->
-<!-- 								  	<input th:field="*{dtSolicitacao}" id="dtSolicitacao" class="form-control form-control-sm custom-datepicker"> -->
-<!-- 									<small th:if="${#fields.hasErrors('dtSolicitacao')}" class="text text-danger custom-text-msg" th:errors="*{dtSolicitacao}"></small>							 -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-							
 <!-- 							<div class="col-2-sm"> -->
 <!-- 								<div class="form-group"> -->
-<!-- 									<label for="idExterno" class="control-label col-form-label col-form-label-sm">Id. Externo</label> -->
-<!-- 									<input th:field="*{idExterno}" id="idExterno" class="form-control form-control-sm"> -->
+<!-- 									<label for="dtCriacao" class="control-label col-form-label col-form-label-sm">Data da Criação</label> -->
+<!-- 									<p th:text="${dataCriacao}" id="dtCriacao" class="form-control form-control-sm" readonly> -->
 <!-- 								</div> -->
 <!-- 							</div> -->
-<!-- 						</div> -->
+						</div>
 			
 						<div class="form-row">
 							<div class="col">
@@ -82,34 +65,36 @@
 						<div class="form-row">
 							<div class="col">
 								<div class="form-group custom-required">
-									<label for="matricula" class="control-label col-form-label col-form-label-sm">Matrícula</label>
-									<input th:field="*{matricula}" id="matricula" class="form-control form-control-sm">
-									<small th:if="${#fields.hasErrors('matricula')}" class="text text-danger" th:errors="*{matricula}"></small>
+									<label for="login" class="control-label col-form-label col-form-label-sm">Login</label>
+									<input th:field="*{login}" id="login" class="form-control form-control-sm">
+									<small th:if="${#fields.hasErrors('login')}" class="text text-danger" th:errors="*{login}"></small>
 								</div>
 							</div>
 						</div>
 			
-						<div class="form-row">
-							<div class="col">
-								<div class="form-group">
-									<label for="email" class="control-label col-form-label col-form-label-sm">eMail</label>
-									<textarea th:field="*{email}" id="email" class="form-control form-control-sm" rows="4"></textarea>
-									<small th:if="${#fields.hasErrors('email')}" class="text text-danger" th:errors="*{email}"></small>
-								</div>
-							</div>
-						</div>
+<!-- 						<div class="form-row"> -->
+<!-- 							<div class="col"> -->
+<!-- 								<div class="form-group"> -->
+<!-- 									<label for="email" class="control-label col-form-label col-form-label-sm">eMail</label> -->
+<!-- 									<textarea th:field="*{email}" id="email" class="form-control form-control-sm" rows="4"></textarea> -->
+<!-- 									<small th:if="${#fields.hasErrors('email')}" class="text text-danger" th:errors="*{email}"></small> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 			
 						<div class="form-row">
 							<div class="col-1-sm">
-								<div class="form-group">
+								<div class="form-group custom-required">
 									<label for="senha" class="control-label col-form-label col-form-label-sm">Senha</label>
-									<input th:field="*{senha}" id="senha" class="form-control form-control-sm">
+									<input th:field="*{senha}" id="senha" class="form-control form-control-sm" type="password">
 									<small th:if="${#fields.hasErrors('senha')}" class="text text-danger" th:errors="*{senha}"></small>
 								</div>
 							</div>
 						</div>
 			
-						<button class="btn btn-success btn-sm">Gravar</button>	
+						<button class="btn btn-success btn-sm">Gravar</button>
+<!-- 						<button class="btn btn-outline-dark btn-sm"><a h:href="@{/principal/principal}">Voltar</a></button>		 -->
+						<a class="btn btn-outline-dark btn-sm" th:href="@{/admin}" role="button">Voltar</a>	
 					</form>
 				</div>
 			
