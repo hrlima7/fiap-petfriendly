@@ -5,7 +5,7 @@
 	  
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style-login	.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style-login.css}"/>
 	<title>Login</title>
 </head>
 
@@ -23,21 +23,24 @@
 
 			<div class="form-group">
 				<label for="usuario">Usuário</label> 
-				<input th:field="*{usuario}" id="usuario" class="form-control form-control-sm" placeholder="eMail">
-				<small th:if="${#fields.hasErrors('usuario')}" class="text text-danger custom-text-msg" th:errors="*{usuario}"></small>
+				<input th:field="*{username}" id="username" class="form-control form-control-sm" placeholder="eMail">
+				<small th:if="${#fields.hasErrors('username')}" class="text text-danger custom-text-msg" th:errors="*{username}"></small>
 			</div>
 
 			<div class="form-group">
 				<label for="senha">Senha</label> 
-				<input th:field="*{senha}" id="senha" class="form-control form-control-sm" autocomplete="off" placeholder="Senha">
-				<small th:if="${#fields.hasErrors('senha')}" class="text text-danger custom-text-msg" th:errors="*{senha}"></small>
+				<input th:field="*{password}" id="password" class="form-control form-control-sm" autocomplete="off" placeholder="Senha">
+				<small th:if="${#fields.hasErrors('password')}" class="text text-danger custom-text-msg" th:errors="*{password}"></small>
 			</div>
 
-			<button class="btn btn-success btn-sm btn-block mt-5">Entrar</button>
+			<button class="btn btn-color-custom btn-sm btn-block mt-5">Entrar</button>
 
 			<div class="mb-3">
-				<p class="text-left custom-text-small"> <a th:href="@{/colaborador/cadastro_colaborador}">Não sou cadastrado</i> </a> </p>
+				<p class="text-left custom-text-small"> <a th:href="@{/usuario/cadastrar}">Não sou cadastrado</i> </a> </p>
 			</div>
+			
+			<!-- instrução para previnir o ataque Cross Site Request Forget -->
+<!-- 			<input type="hidden" th:name="${csrf.parameterName}" th:value="${csrf.token}" /> -->
 		</form>
 	</div>
 </body>

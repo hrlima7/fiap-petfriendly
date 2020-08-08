@@ -27,7 +27,7 @@ import lombok.EqualsAndHashCode;
 @Entity(name = "T_COLABORADOR")
 public class Colaborador {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="SQ_T_COLABORADOR")
+//	@GeneratedValue(strategy=GenerationType.AUTO, generator="SQ_T_COLABORADOR")
 	@Column(name = "ID_COLABORADOR")	
 	Integer Id;
 

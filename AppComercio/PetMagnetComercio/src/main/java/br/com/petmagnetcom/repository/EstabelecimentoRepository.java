@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.petmagnetcom.model.Estabelecimento;
 
-public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento, Integer> {
-
+public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento, Long> {
+	
 }

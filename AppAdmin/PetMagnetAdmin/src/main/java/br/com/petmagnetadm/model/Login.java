@@ -20,13 +20,13 @@ import lombok.NoArgsConstructor;
 public class Login {
 	@NotBlank(message = "{campo.obrigatorio}")
 	@Email
-	String login;
+	String username;
 	
 	@NotBlank(message = "{campo.obrigatorio}")
 	@Size(min = 6, max = 30)
-	String senha;
+	String password;
 
 	public Usuario validarAcesso(UsuarioService s) {
-		return s.consultarPorLoginSenha(this.login, this.senha);
+		return s.consultarPorLoginSenha(this.username, this.password);
 	}
 }
