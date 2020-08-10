@@ -10,8 +10,8 @@ import br.com.petmagnetcom.model.Colaborador;
 public interface ColaboradorService {
 	public Colaborador inserir(Colaborador obj);
 	public Colaborador alterar(Colaborador obj);
-	public Colaborador excluir(Integer id);
-	public Colaborador consultarPorId(Integer id);
+	public Colaborador excluir(Long id);
+	public Colaborador consultarPorId(Long id);
 	public List<Colaborador> consultarTodos();
 	public Colaborador consultarPorEmaileSenha(String e, String s);
 }

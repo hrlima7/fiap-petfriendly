@@ -1,63 +1,54 @@
 package br.com.petmagnetcom.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@Entity(name = "T_COLABORADOR")
-public class Colaborador {
+@Entity
+@Table(name = "t_colaborador")
+public class Colaborador extends LogRegistro {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-//	@GeneratedValue(strategy=GenerationType.AUTO, generator="SQ_T_COLABORADOR")
-	@Column(name = "ID_COLABORADOR")	
-	Integer Id;
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_colaborador")
+	private Long id;	
 
-	@Column(name = "NM_COLABORADOR", length = 60)
+	@Column(name = "nm_colaborador", length = 60)
 	@NotEmpty
 	@Min(value = 5)
 	@Max(value = 60)
-	String nome;
+	private String nome;
 
-	@Column(name = "CD_MATRICULA", length = 15)
+	@Column(name = "ds_senha", length = 20)
 	@NotEmpty
-	@Min(value = 1)
-	@Max(value = 15)
-	String matricula;
+	@Min(value = 5)
+	@Max(value = 20)
+	private String senha;
+		
+	@Column(name = "id_estabel", length = 15)
+	@NotEmpty
+	private Long idEstabelecimento;
 
-	@Column(name = "DS_EMAIL", length = 30)
-	@NotEmpty
-	@Min(value = 1)
-	@Max(value = 30)
-	String email;
-
-	@Column(name = "DS_SENHA", length = 30)
-	@NotEmpty
-	@Min(value = 6)
-	@Max(value = 30)
-	String senha;
-	
-	@Column(name = "DT_CRIACAO")
-	@CreationTimestamp
-	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/yyyy HH:mm:SS")
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-	Date dtCriacao;
+	@ManyToOne
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	private Estabelecimento estabelecimento;	
 }

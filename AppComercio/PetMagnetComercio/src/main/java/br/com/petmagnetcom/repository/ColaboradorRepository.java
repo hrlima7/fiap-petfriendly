@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 import br.com.petmagnetcom.model.Colaborador;
 
 @Repository
-public interface ColaboradorRepository extends JpaRepository<Colaborador, Integer> {
-	Colaborador findByEmailAndSenha(String email, String senha);
+public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> {
 }

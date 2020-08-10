@@ -1,5 +1,7 @@
 package br.com.petmagnetcom.service.impl;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.maps.errors.ApiException;
+
 import br.com.petmagnetcom.model.Endereco;
 import br.com.petmagnetcom.model.Estabelecimento;
 import br.com.petmagnetcom.repository.EnderecoRepository;
 import br.com.petmagnetcom.repository.EstabelecimentoRepository;
 import br.com.petmagnetcom.service.EstabelecimentoService;
+import br.com.petmagnetcom.util.GeoLocalizacao;
+import br.com.petmagnetcom.util.Localizacao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,17 +32,21 @@ public class EstabelecimentoServiceImpl implements EstabelecimentoService {
 	private EnderecoRepository enderecoRepository;
 
 	@Override
-	public Estabelecimento cadastrar(Estabelecimento obj) {
+	public Estabelecimento cadastrar(Estabelecimento estb) {
 		Endereco endereco = this.enderecoRepository.findByLogradouroAndNumeroAndBairroAndCidadeAndUF(
-				obj.getEndereco().getLogradouro(), obj.getEndereco().getNumero(), obj.getEndereco().getBairro(),
-				obj.getEndereco().getCidade(), obj.getEndereco().getUF())
-				.orElse(
-						this.enderecoRepository.save(obj.getEndereco())	
+				estb.getEndereco().getLogradouro(), estb.getEndereco().getNumero(), estb.getEndereco().getBairro(),
+				estb.getEndereco().getCidade(), estb.getEndereco().getUF())
+				.orElseGet(	
+						() -> gravarNovoEndereco(estb.getEndereco())
 				);
 
-		obj.setEndereco(endereco);
+		if (endereco == null) {
+			return null;
+		}
 		
-		return this.estabelecimentoRepository.save(obj);
+		estb.setEndereco(endereco);
+		
+		return this.estabelecimentoRepository.save(estb);
 	}
 
 	@Override
@@ -95,5 +105,32 @@ public class EstabelecimentoServiceImpl implements EstabelecimentoService {
 					
 					return this.estabelecimentoRepository.save(novoEstabel);
 				});
+	}
+	
+	private Endereco gravarNovoEndereco(Endereco e) {
+		GeoLocalizacao gl = new GeoLocalizacao();
+		Localizacao lcl = new Localizacao();
+		
+		try {
+			lcl = gl.getGeoLocalizacao(e.getCep());
+			
+			e.setLatitude(lcl.getLatitude());
+			e.setLongitude(lcl.getLongitude());
+			
+			this.enderecoRepository.save(e);
+			
+		} catch (ApiException e1) {
+			
+		} catch (InterruptedException e1) {
+			
+		} catch (IOException e1) {
+			
+		} catch (ParseException e1) {
+			
+		} catch (org.json.simple.parser.ParseException e1) {
+			
+		}
+
+		return e;
 	}
 }

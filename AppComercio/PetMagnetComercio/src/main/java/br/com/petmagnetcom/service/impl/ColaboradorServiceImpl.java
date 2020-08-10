@@ -2,49 +2,67 @@ package br.com.petmagnetcom.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sun.xml.txw2.IllegalSignatureException;
+
 import br.com.petmagnetcom.model.Colaborador;
+import br.com.petmagnetcom.model.Estabelecimento;
 import br.com.petmagnetcom.repository.ColaboradorRepository;
+import br.com.petmagnetcom.repository.EstabelecimentoRepository;
 import br.com.petmagnetcom.service.ColaboradorService;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class ColaboradorServiceImpl implements ColaboradorService {
-	@Autowired
-	ColaboradorRepository repository;
+	private ColaboradorRepository colaboradorRepository;
+	private EstabelecimentoRepository estabelecimentoRepository;
+
+	public ColaboradorServiceImpl(ColaboradorRepository cr, EstabelecimentoRepository er) {
+		this.colaboradorRepository = cr;
+		this.estabelecimentoRepository = er;
+	}
 	
 	@Override
 	public Colaborador inserir(Colaborador obj) {
-		return repository.save(obj);
+		Estabelecimento estabelecimento = this.estabelecimentoRepository.findById(obj.getEstabelecimento().getId())
+				.orElseThrow( () -> new IllegalSignatureException("Este Estabelecimento não está cadastrado"));
+		
+		//Colaborador colaborador = this.colaboradorRepository.FindByNomeAndSenha
+				
+				
+		return null;
 	}
 
 	@Override
 	public Colaborador alterar(Colaborador obj) {
-		return repository.save(obj);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public Colaborador excluir(Integer id) {
-		Colaborador c = repository.findById(id).get();
-		repository.deleteById(id);
-		return c;
+	public Colaborador excluir(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public Colaborador consultarPorId(Integer id) {
-		return repository.findById(id).get();
+	public Colaborador consultarPorId(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<Colaborador> consultarTodos() {
-		return repository.findAll();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Colaborador consultarPorEmaileSenha(String e, String s) {
-		return repository.findByEmailAndSenha(e, s);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

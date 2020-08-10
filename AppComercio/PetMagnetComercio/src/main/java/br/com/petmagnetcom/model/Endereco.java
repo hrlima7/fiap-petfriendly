@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -47,9 +49,11 @@ public class Endereco extends LogRegistro {
 	private String cep;
 	
 	@Column(name = "nr_latitude")
+	@JsonIgnore
 	private String latitude;
 	
 	@Column(name = "nr_longitude")
+	@JsonIgnore
 	private String longitude;
 	
 //	@OneToMany(mappedBy = "endereco")
